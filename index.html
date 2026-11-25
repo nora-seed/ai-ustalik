@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1120" />
+  <meta name="description" content="2026 Küresel ve Türkiye Yapay Zeka Eğitim Ekosistemi, Bağlam/Harness Mühendisliği, SM-2 Bilgi Kartları, Simülatörler ve 90 Günlük Yol Haritası PWA." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="AI Ustalık" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+  <title>AI Ustalık 2026 — Yapay Zeka Eğitim &amp; Pratik</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="./icon-192.png" alt="AI Ustalık Logo" />
+        <div>
+          AI Ustalık 2026
+          <span class="brand-sub">Bağlam, Ajan, Harness &amp; Türkiye Ekosistemi</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span class="pill-stat" id="streak-pill" title="Günlük Çalışma Serisi">🔥 1g</span>
+        <span class="pill-stat" id="xp-pill" title="Toplam XP">⚡ 0 XP</span>
+        <button class="icon-btn" id="theme-btn" title="Tema Değiştir" aria-label="Tema Değiştir">☀️</button>
+        <button class="icon-btn" id="settings-btn" title="Ayarlar &amp; Yedekleme" aria-label="Ayarlar">⚙️</button>
+      </div>
+    </div>
+    <nav class="desktop-nav" aria-label="Ana Menü">
+      <button class="nav-tab active" data-view="home">🏠 Özet</button>
+      <button class="nav-tab" data-view="lessons">📚 Dersler</button>
+      <button class="nav-tab" data-view="cards">🧠 Hafıza (SM-2)</button>
+      <button class="nav-tab" data-view="lab">🧪 Lab &amp; Quiz</button>
+      <button class="nav-tab" data-view="roadmap">🗺️ 90 Gün</button>
+      <button class="nav-tab" data-view="library">🔎 Kaynak &amp; Sözlük</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HOME VIEW -->
+    <section id="view-home" class="view active"></section>
+
+    <!-- LESSONS VIEW -->
+    <section id="view-lessons" class="view"></section>
+
+    <!-- FLASHCARDS (SM-2) VIEW -->
+    <section id="view-cards" class="view"></section>
+
+    <!-- LAB & QUIZ VIEW -->
+    <section id="view-lab" class="view"></section>
+
+    <!-- 90-DAY ROADMAP VIEW -->
+    <section id="view-roadmap" class="view"></section>
+
+    <!-- LIBRARY & GLOSSARY VIEW -->
+    <section id="view-library" class="view"></section>
+  </main>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Mobil Menü">
+    <button class="bnav-btn active" data-view="home"><span class="ico">🏠</span>Özet</button>
+    <button class="bnav-btn" data-view="lessons"><span class="ico">📚</span>Ders</button>
+    <button class="bnav-btn" data-view="cards"><span class="ico">🧠</span>Hafıza</button>
+    <button class="bnav-btn" data-view="lab"><span class="ico">🧪</span>Lab</button>
+    <button class="bnav-btn" data-view="roadmap"><span class="ico">🗺️</span>90 Gün</button>
+    <button class="bnav-btn" data-view="library"><span class="ico">🔎</span>Kaynak</button>
+  </nav>
+
+  <!-- Settings / Backup Modal -->
+  <div class="modal-backdrop" id="settings-modal">
+    <div class="modal">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h2 style="margin:0;">⚙️ Ayarlar &amp; Veri Yedekleme</h2>
+        <button class="icon-btn" id="close-settings" aria-label="Kapat">✕</button>
+      </div>
+      <div class="card-soft" style="margin-bottom:12px;">
+        <label class="field-lbl" for="role-select">Aktif Uzmanlık Kulvarınız</label>
+        <select id="role-select">
+          <option value="dev">Yazılım ve Yapay Zeka Geliştiricisi</option>
+          <option value="knowledge">Bilgi Çalışanı, Akademisyen &amp; Araştırmacı</option>
+          <option value="leader">Yönetici, Ürün Lideri &amp; Girişimci</option>
+        </select>
+        <p class="muted small" style="margin-top:6px;">90 günlük yol haritası ve öneriler seçtiğiniz kulvara göre otomatik uyarlanır. İstediğiniz zaman değiştirebilirsiniz.</p>
+      </div>
+      <div class="card-soft" style="margin-bottom:12px;">
+        <h3>💾 İlerleme Yedekleme (JSON)</h3>
+        <p class="muted small">Tüm verileriniz cihazınızda çevrimdışı (localStorage) saklanır. Telefon ve bilgisayar arasında aktarmak için yedek alın.</p>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" id="export-btn">⬇️ Yedeği İndir (.json)</button>
+          <label class="btn btn-sm" style="cursor:pointer;">
+            ⬆️ Yedek Yükle
+            <input type="file" id="import-input" accept="application/json" style="display:none;" />
+          </label>
+        </div>
+      </div>
+      <div class="card-soft" style="margin-bottom:12px;">
+        <h3>📱 Çevrimdışı PWA Durumu</h3>
+        <p class="muted small" id="pwa-status">Service Worker kontrol ediliyor...</p>
+        <p class="muted small">iPhone Safari'de: <strong>Paylaş → Ana Ekrana Ekle</strong> adımıyla uygulama gibi kurabilirsiniz.</p>
+      </div>
+      <div class="btn-row" style="justify-content:flex-end;">
+        <button class="btn btn-danger btn-sm" id="reset-btn">🗑️ Tüm İlerlemeyi Sıfırla</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
